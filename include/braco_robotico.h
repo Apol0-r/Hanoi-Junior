@@ -1,7 +1,10 @@
 # ifndef BRACOROBOTICO_H
 # define BRACOROBOTICO_H
 
-#define ANGULO_INICIALIZACAO 90
+#define ANGULO_INICIALIZACAO_BASE 90
+#define ANGULO_INICIALIZACAO_GARRA 90
+#define ANGULO_INICIALIZACAO_HORIZONTAL 120
+#define ANGULO_INICIALIZACAO_VERTICAL 90
 
 #define POS_INICIAL_BASE 180 
 #define POS_INICIAL_GARRA 20
@@ -33,23 +36,23 @@ class BracoRobotico {
   public:
     BracoRobotico(int PIN_base, int PIN_garra, int PIN_vertical, int PIN_horizontal) {
       
-      servo_base.write(ANGULO_INICIALIZACAO);
       servo_base.attach(PIN_base);
+      servo_base.write(ANGULO_INICIALIZACAO_BASE);
       
-      servo_garra.write(ANGULO_INICIALIZACAO);
       servo_garra.attach(PIN_garra);
+      servo_garra.write(ANGULO_INICIALIZACAO_GARRA);
 
-      servo_vertical.write(ANGULO_INICIALIZACAO);
       servo_vertical.attach(PIN_vertical);
+      servo_vertical.write(ANGULO_INICIALIZACAO_VERTICAL);
 
-      servo_horizontal.write(ANGULO_INICIALIZACAO);
       servo_horizontal.attach(PIN_horizontal);
+      servo_horizontal.write(ANGULO_INICIALIZACAO_HORIZONTAL);
     }
 
     void inicializar();
     void posicao_padrao();
     void exibir_monitor();
-    int movimenta_servo(Servo servo_alvo, int ANG_inicial, int ANG_final);
+    int movimenta_servo(Servo &servo_alvo, int ANG_inicial, int ANG_final);
 
 };
 
