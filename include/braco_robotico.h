@@ -49,10 +49,32 @@ class BracoRobotico {
       servo_horizontal.write(ANGULO_INICIALIZACAO_HORIZONTAL);
     }
 
-    void inicializar();
-    void posicao_padrao();
-    void exibir_monitor();
+    /**
+    inicializar é a função de calibração. Ela busca fixar os servos inicialmente nos "extremos" (que são 
+    subjetivos, dependem do servo). Ela serve de ponto de partida. Talvez futuramente ela seja dispensável,
+    porém ela se válida... 
+    */
+    bool inicializar();
+
+    /**
+    posicao_padrao também é uma função de operação, mas ela põe os servos na posição padrão deles. Isso depende
+    inteiramente de cada servo e das suas limitações.
+    */
+    bool posicao_padrao();
+   
+    /**
+    movimenta_servo é uma função auxiliar que serve para realziar de fato a alteração dos angulos. Ela muda o 
+    angulo, mas buscando sempre manter uma suavidade a partir de um laço for.
+    */
     int movimenta_servo(Servo &servo_alvo, int ANG_inicial, int ANG_final);
+
+    /*
+    Funções getters, apenas retornam o angulo atual do servo. Apenas isso. Não permitem MUDAR o angulo!
+    */
+    int getPOS_base() const;
+    int getPOS_garra() const;
+    int getPOS_vertical() const;
+    int getPOS_horizontal() const;
 
 };
 
