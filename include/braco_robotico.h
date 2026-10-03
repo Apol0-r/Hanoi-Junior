@@ -6,10 +6,10 @@
 #define ANGULO_INICIALIZACAO_HORIZONTAL 120
 #define ANGULO_INICIALIZACAO_VERTICAL 90
 
-#define POS_INICIAL_BASE 180 
-#define POS_INICIAL_GARRA 20
-#define POS_INICIAL_HORIZONTAL 160
-#define POS_INICIAL_VERTICAL 180
+#define POS_CALIBRACAO_BASE 180 
+#define POS_CALIBRACAO_GARRA 20
+#define POS_CALIBRACAO_HORIZONTAL 160
+#define POS_CALIBRACAO_VERTICAL 180
 
 
 #define POS_PADRAO_BASE 96
@@ -63,10 +63,12 @@ class BracoRobotico {
     bool posicao_padrao();
    
     /**
-    movimenta_servo é uma função auxiliar que serve para realziar de fato a alteração dos angulos. Ela muda o 
+    movimenta_suave é uma função auxiliar que serve para realziar de fato a alteração dos angulos. Ela muda o 
     angulo, mas buscando sempre manter uma suavidade a partir de um laço for.
     */
-    int movimenta_servo(Servo &servo_alvo, int ANG_inicial, int ANG_final);
+    int movimenta_suave(Servo &servo_alvo, int ANG_inicial, int ANG_final);
+
+    bool moverBase(int angulo);
 
     /*
     Funções getters, apenas retornam o angulo atual do servo. Apenas isso. Não permitem MUDAR o angulo!
