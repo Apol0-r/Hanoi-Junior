@@ -7,11 +7,15 @@ int descobrir_anguloPino(int pino) {
     switch (pino) {
         case 1:
             return PINO_ESQUERDO;
+            break;
         case 2:
             return PINO_CENTRAL;
+            break;
         case 3:
             return PINO_DIREITO;
+            break;
     }
+    return 0;
 }
 
 int descobrir_anguloServoVertical(int nivel) {
@@ -31,10 +35,13 @@ int descobrir_anguloServoHorizontal(int nivel) {
     switch (nivel) {
         case 1:
             return NIVEL_1_HORIZONTAL;
+            break;
         case 2:
             return NIVEL_2_HORIZONTAL;
+            break;
         case 3:
             return NIVEL_3_HORIZONTAL;
+            break;
     }
 }
 

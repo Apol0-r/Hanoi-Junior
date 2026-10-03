@@ -43,7 +43,7 @@ bool BracoRobotico::moverGarra(int angulo) {
 }
 
 bool BracoRobotico::moverHorizontal(int angulo) {
-    POS_horizontal = movimenta_suave(servo_garra, POS_horizontal, angulo);
+    POS_horizontal = movimenta_suave(servo_horizontal, POS_horizontal, angulo);
     return true;
 }
 

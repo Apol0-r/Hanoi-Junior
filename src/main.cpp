@@ -1,4 +1,3 @@
-
 #include "braco_robotico.h"
 #include "depuracao.h"
 #include "hanoi.h"
@@ -17,23 +16,29 @@ void setup() {
   Serial.begin(9600);
   
   operacao = braco_goat.posicao_padrao();
+  verificarOperacao("Posicao Padrao", operacao);
   exibirStatus(braco_goat);
 
   delay(1000);
+
+  // braco_goat.moverBase(PINO_ESQUERDO);
+  // braco_goat.moverHorizontal(NIVEL_3_HORIZONTAL);
+  // braco_goat.moverVertical(NIVEL_3_VERTICAL);
+  // braco_goat.moverGarra(GARRA_ABERTA);
+
+  // exibirStatus(braco_goat);
+  
+  // delay(1000);
+  // operacao = braco_goat.posicao_padrao();
+
+  // verificarOperacao("Posicao Padrao", operacao);
+  // exibirStatus(braco_goat);
 
   braco_goat.moverBase(PINO_ESQUERDO);
   braco_goat.moverHorizontal(NIVEL_3_HORIZONTAL);
   braco_goat.moverVertical(NIVEL_3_VERTICAL);
-  braco_goat.moverGarra(GARRA_ABERTA);
-
+  braco_goat.moverGarra(GARRA_FECHADA);
   exibirStatus(braco_goat);
-  
-  delay(1000);
-  operacao = braco_goat.posicao_padrao();
-
-  verificarOperacao("Posicao Padrao", operacao);
-  exibirStatus(braco_goat);
-
   
 }
 
