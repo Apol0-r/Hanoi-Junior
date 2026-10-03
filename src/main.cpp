@@ -17,10 +17,10 @@ void setup() {
   operacao = braco_goat.inicializar();
   verificarOperacao("Inicializacao p/ Extremos", operacao);
 
+  delay(1000);
+
   operacao = braco_goat.moverBase(0);
   verificarOperacao("Mover a base", operacao);
-
- 
 
   // operacao = braco_goat.posicao_padrao();
   // verificarOperacao("Posicao Padrao", operacao);

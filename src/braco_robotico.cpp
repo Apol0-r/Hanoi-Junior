@@ -4,25 +4,27 @@
 
 
 int BracoRobotico::movimenta_suave(Servo &servo_alvo, int ANG_inicial, int ANG_final) {
+    if (ANG_inicial = ANG_final) return;
+
     // int diferenca = ANG_final - ANG_inicial;
     // int i;
 
     // if (diferenca < 0) {
-    //     for (i = ANG_inicial; i != ANG_final; i--) {
+    //     for (i = ANG_inicial; i >= ANG_final; i--) {
     //         servo_alvo.write(i);
     //         delay(15);
             
     //     }
     // } else if (diferenca > 0) {
-    //     for (i = ANG_inicial; i != ANG_final; i++) {
+    //     for (i = ANG_inicial; i <= ANG_final; i++) {
     //         servo_alvo.write(i);
     //         delay(15);
     //     }
     // }
-
+    
     servo_alvo.write(ANG_final);
 
-    delay(2000);
+    delay(200);
 
     return ANG_final;
 }
