@@ -3,9 +3,7 @@
 
 
 
-void BracoRobotico::teste() {
-    servo_base.write(POS_base);
-}
+
 
 int BracoRobotico::movimenta_suave(Servo &servo_alvo, int ANG_inicial, int ANG_final) {
     if (ANG_inicial == ANG_final) return ANG_final;
@@ -34,10 +32,26 @@ int BracoRobotico::movimenta_suave(Servo &servo_alvo, int ANG_inicial, int ANG_f
 }
 
 
- bool BracoRobotico::moverBase(int angulo) {
+bool BracoRobotico::moverBase(int angulo) {
     POS_base = movimenta_suave(servo_base, POS_base, angulo);
     return true;
- }
+}
+
+bool BracoRobotico::moverGarra(int angulo) {
+    POS_garra = movimenta_suave(servo_garra, POS_garra, angulo);
+    return true;
+}
+
+bool BracoRobotico::moverHorizontal(int angulo) {
+    POS_horizontal = movimenta_suave(servo_garra, POS_horizontal, angulo);
+    return true;
+}
+
+bool BracoRobotico::moverVertical(int angulo) {
+    POS_vertical = movimenta_suave(servo_vertical, POS_vertical, angulo);
+    return true;
+}
+
 
 
 bool BracoRobotico::posicao_padrao() {

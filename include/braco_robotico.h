@@ -17,6 +17,9 @@
 #define POS_PADRAO_HORIZONTAL 115
 #define POS_PADRAO_VERTICAL 110
 
+#define GARRA_FECHADA 97
+#define GARRA_ABERTA 57
+
 
 #include <Servo.h>
 #include <Arduino.h>
@@ -60,9 +63,6 @@ class BracoRobotico {
     porém ela se válida... 
     */
 
-    void teste();
-
-
 
     bool inicializar();
 
@@ -79,6 +79,9 @@ class BracoRobotico {
     int movimenta_suave(Servo &servo_alvo, int ANG_inicial, int ANG_final);
 
     bool moverBase(int angulo);
+    bool moverGarra(int angulo);
+    bool moverHorizontal(int angulo);
+    bool moverVertical(int angulo);
 
     /*
     Funções getters, apenas retornam o angulo atual do servo. Apenas isso. Não permitem MUDAR o angulo!
