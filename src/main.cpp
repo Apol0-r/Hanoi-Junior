@@ -7,11 +7,16 @@
 #define PIN_VERTICAL 6
 #define PIN_BASE 9
 
-BracoRobotico braco_goat(PIN_BASE, PIN_GARRA, PIN_VERTICAL, PIN_HORIZONTAL);
+
 
 void setup() {
+
+  BracoRobotico braco_goat(PIN_BASE, PIN_GARRA, PIN_VERTICAL, PIN_HORIZONTAL);
+
   bool operacao;
 
+  // braco_goat.teste();
+  
   Serial.begin(9600);
 
   operacao = braco_goat.inicializar();
@@ -19,11 +24,11 @@ void setup() {
 
   delay(1000);
 
-  operacao = braco_goat.moverBase(0);
-  verificarOperacao("Mover a base", operacao);
+  // operacao = braco_goat.moverBase(90);
+  // verificarOperacao("Mover a base", operacao);
 
-  // operacao = braco_goat.posicao_padrao();
-  // verificarOperacao("Posicao Padrao", operacao);
+  operacao = braco_goat.posicao_padrao();
+  verificarOperacao("Posicao Padrao", operacao);
 
   exibirStatus(braco_goat);
 }

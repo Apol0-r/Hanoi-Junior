@@ -1,7 +1,7 @@
 # ifndef BRACOROBOTICO_H
 # define BRACOROBOTICO_H
 
-#define ANGULO_INICIALIZACAO_BASE 90
+#define ANGULO_INICIALIZACAO_BASE 0
 #define ANGULO_INICIALIZACAO_GARRA 90
 #define ANGULO_INICIALIZACAO_HORIZONTAL 120
 #define ANGULO_INICIALIZACAO_VERTICAL 90
@@ -37,16 +37,21 @@ class BracoRobotico {
     BracoRobotico(int PIN_base, int PIN_garra, int PIN_vertical, int PIN_horizontal) {
       
       servo_base.attach(PIN_base);
-      servo_base.write(ANGULO_INICIALIZACAO_BASE);
+      POS_base = ANGULO_INICIALIZACAO_BASE;
+      servo_base.write(POS_base);
       
       servo_garra.attach(PIN_garra);
-      servo_garra.write(ANGULO_INICIALIZACAO_GARRA);
+      POS_garra = ANGULO_INICIALIZACAO_GARRA;
+      servo_garra.write(POS_garra);
 
       servo_vertical.attach(PIN_vertical);
-      servo_vertical.write(ANGULO_INICIALIZACAO_VERTICAL);
+      POS_vertical = ANGULO_INICIALIZACAO_VERTICAL;
+      servo_vertical.write(POS_vertical);
+      
 
       servo_horizontal.attach(PIN_horizontal);
-      servo_horizontal.write(ANGULO_INICIALIZACAO_HORIZONTAL);
+      POS_horizontal = ANGULO_INICIALIZACAO_HORIZONTAL;
+      servo_horizontal.write(POS_horizontal);
     }
 
     /**
@@ -54,6 +59,11 @@ class BracoRobotico {
     subjetivos, dependem do servo). Ela serve de ponto de partida. Talvez futuramente ela seja dispensável,
     porém ela se válida... 
     */
+
+    void teste();
+
+
+
     bool inicializar();
 
     /**
