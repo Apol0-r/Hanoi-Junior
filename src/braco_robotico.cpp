@@ -38,7 +38,9 @@ bool BracoRobotico::moverBase(int angulo) {
 }
 
 bool BracoRobotico::moverGarra(int angulo) {
-    POS_garra = movimenta_suave(servo_garra, POS_garra, angulo);
+    // POS_garra = movimenta_suave(servo_garra, POS_garra, angulo);
+    POS_garra = angulo;
+    servo_garra.write(POS_garra);
     return true;
 }
 

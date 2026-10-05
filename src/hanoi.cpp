@@ -72,9 +72,11 @@ bool moverDisco(int origem, int destino, BracoRobotico &braco_goat) {
     // -------------------------------------------------------------
     // ETAPA 1: Ir até o pino de Origem em posição elevada
     // -------------------------------------------------------------
+    braco_goat.posicao_padrao();
+
     braco_goat.moverGarra(GARRA_ABERTA);
-    braco_goat.moverVertical(anguloVerticalRecuo);
-    braco_goat.moverHorizontal(anguloHorizontalRecuo);
+    // braco_goat.moverVertical(anguloVerticalRecuo);
+    // braco_goat.moverHorizontal(anguloHorizontalRecuo);
     braco_goat.moverBase(anguloPinoOrigem);
 
     // -------------------------------------------------------------
@@ -87,15 +89,21 @@ bool moverDisco(int origem, int destino, BracoRobotico &braco_goat) {
     // -------------------------------------------------------------
     // ETAPA 3: Elevar o braço (Recuo / Altura Segura para transporte)
     // -------------------------------------------------------------
-    braco_goat.moverVertical(anguloVerticalRecuo);
     braco_goat.moverHorizontal(anguloHorizontalRecuo);
+    braco_goat.moverVertical(anguloVerticalRecuo);
+    
 
     // -------------------------------------------------------------
-    // ETAPA 4: Giro da Base e Soltura do Disco
+    // ETAPA 4: Giro da Base e Soltura do Discoconstexpr int Alturas_Lateral_Braco_H[] =   { 170 , 155 , 147 , 136 };                                        //Cordenadas das torres laterais de altura de baixo para cima do braço horizontal
+constexpr int Alturas_Centro_Braco_H[]  =   { 164 , 154 , 146 , 135 };                                        //Cordenadas da torre central de altura de baixo pra cima do braço horizontal
+constexpr int Alturas_Lateral_Braco_V[] =   { 130 , 141 , 148 , 165 };                                        //Cordenadas das torres laterais de altura de baixo para cima do braço vertical
+constexpr int Alturas_Centro_Braco_V[]  =   { 129 , 139 , 145 , 162 };                                        //Cordenadas das torre central de altura de baixo para cima do braço vertical
+constexpr int Giro_Base[]               =   { 107 ,  96 , 87 };                                               //Cordenadas de rotação da base da torre da esquerda até a da direita
     // -------------------------------------------------------------
     braco_goat.moverBase(anguloPinoDestino);
     braco_goat.moverVertical(anguloVerticalSoltura);
     braco_goat.moverHorizontal(anguloHorizontalSoltura);
+    braco_goat.moverHorizontal(anguloVerticalSoltura-10);
     braco_goat.moverGarra(GARRA_ABERTA); // aqui é pra soltar o disco do alto
 
     discosNoPino[origem - 1]--;

@@ -18,7 +18,7 @@
 #define POS_PADRAO_VERTICAL 127
 
 #define GARRA_FECHADA 97
-#define GARRA_ABERTA 57
+#define GARRA_ABERTA 60 //57
 
 
 #include <Servo.h>
@@ -40,20 +40,20 @@ class BracoRobotico {
     BracoRobotico(int PIN_base, int PIN_garra, int PIN_vertical, int PIN_horizontal) {
       
       servo_base.attach(PIN_base);
-      POS_base = ANGULO_INICIALIZACAO_BASE;
+      POS_base = POS_PADRAO_BASE;
       servo_base.write(POS_base);
       
       servo_garra.attach(PIN_garra);
-      POS_garra = ANGULO_INICIALIZACAO_GARRA;
+      POS_garra = POS_PADRAO_GARRA;
       servo_garra.write(POS_garra);
 
       servo_vertical.attach(PIN_vertical);
-      POS_vertical = ANGULO_INICIALIZACAO_VERTICAL;
+      POS_vertical = POS_PADRAO_VERTICAL;
       servo_vertical.write(POS_vertical);
       
 
       servo_horizontal.attach(PIN_horizontal);
-      POS_horizontal = ANGULO_INICIALIZACAO_HORIZONTAL;
+      POS_horizontal = POS_PADRAO_HORIZONTAL;
       servo_horizontal.write(POS_horizontal);
     }
 

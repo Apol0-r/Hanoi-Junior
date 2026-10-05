@@ -2,7 +2,7 @@
 #define HANOI_H
 
 #define PINO_ESQUERDO 106
-#define PINO_CENTRAL 95
+#define PINO_CENTRAL 96
 #define PINO_DIREITO 87
 
 #define NIVEL_4_VERTICAL_CENTRAL 162
