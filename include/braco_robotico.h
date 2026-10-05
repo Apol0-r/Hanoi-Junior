@@ -77,6 +77,8 @@ class BracoRobotico {
     angulo, mas buscando sempre manter uma suavidade a partir de um laço for.
     */
     int movimenta_suave(Servo &servo_alvo, int ANG_inicial, int ANG_final);
+    bool BracoRobotico::moverVerticalEHorizontal(int anguloVertical, int anguloHorizontal) ;
+
 
     bool moverBase(int angulo);
     bool moverGarra(int angulo);

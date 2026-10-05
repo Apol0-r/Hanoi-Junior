@@ -31,6 +31,34 @@ int BracoRobotico::movimenta_suave(Servo &servo_alvo, int ANG_inicial, int ANG_f
     return ANG_final;
 }
 
+ bool BracoRobotico::moverVerticalEHorizontal(int anguloVertical, int anguloHorizontal) {
+    int delta_vertical = anguloVertical - POS_vertical;
+    int delta_horizontal = anguloHorizontal - POS_horizontal;
+
+    int passos = max(abs(delta_vertical), abs(delta_horizontal));
+
+    if (passos == 0) return true;
+
+    int POS_V_inicial = POS_vertical;
+    int POS_H_inicial  = POS_horizontal;
+
+    for (int i = 0; i <= passos; i++) {
+        int POS_V_atual = POS_V_inicial + (delta_horizontal*i)/passos;
+        int POS_H_atual = POS_H_inicial + (delta_horizontal*i)/passos;
+
+        servo_vertical.write(POS_V_atual);
+        servo_horizontal.write(POS_H_atual);
+
+        delay(15);
+    }
+
+    POS_vertical = anguloVertical;
+    POS_horizontal = anguloHorizontal;
+
+    delay(200);
+    return true;
+ }
+
 
 bool BracoRobotico::moverBase(int angulo) {
     POS_base = movimenta_suave(servo_base, POS_base, angulo);
