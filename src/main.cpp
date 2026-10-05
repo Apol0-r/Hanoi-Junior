@@ -15,10 +15,8 @@ void setup() {
   
   Serial.begin(9600);
   
-  operacao = braco_goat.posicao_padrao();
-  verificarOperacao("Posicao Padrao", operacao);
-  exibirStatus(braco_goat);
-
+  braco_goat.posicao_padrao();
+  
   delay(1000);
 
   // braco_goat.moverBase(PINO_ESQUERDO);
@@ -34,11 +32,15 @@ void setup() {
   // verificarOperacao("Posicao Padrao", operacao);
   // exibirStatus(braco_goat);
 
-  braco_goat.moverBase(PINO_ESQUERDO);
-  braco_goat.moverHorizontal(NIVEL_3_HORIZONTAL);
-  braco_goat.moverVertical(NIVEL_3_VERTICAL);
-  braco_goat.moverGarra(GARRA_FECHADA);
-  exibirStatus(braco_goat);
+  // braco_goat.moverBase(PINO_ESQUERDO);
+  // braco_goat.moverHorizontal(NIVEL_3_HORIZONTAL);
+  // braco_goat.moverVertical(NIVEL_3_VERTICAL);
+  // braco_goat.moverGarra(GARRA_FECHADA);
+
+  operacao = resolverHanoi(3, 1, 3, 2, braco_goat);
+  verificarOperacao("Resolver Hanoi", operacao);
+
+  braco_goat.posicao_padrao();
   
 }
 
