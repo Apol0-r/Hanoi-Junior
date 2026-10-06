@@ -82,28 +82,41 @@ bool moverDisco(int origem, int destino, BracoRobotico &braco_goat) {
     // -------------------------------------------------------------
     // ETAPA 2: Descer para a altura do disco e Coletar
     // -------------------------------------------------------------
-    // braco_goat.moverHorizontal(anguloHorizontal);
-    // braco_goat.moverVertical(anguloVertical);
-    braco_goat.moverVerticalEHorizontal(anguloVertical, anguloHorizontal);
+    
+    // braco_goat.moverVerticalEHorizontal(anguloVertical, anguloHorizontal);
+    braco_goat.moverVertical(anguloVertical);
+    delay(500);
+    braco_goat.moverHorizontal(anguloHorizontal);
+    
     braco_goat.moverGarra(GARRA_FECHADA);
+
+    
 
     // -------------------------------------------------------------
     // ETAPA 3: Elevar o braço (Recuo / Altura Segura para transporte)
     // -------------------------------------------------------------
-    // braco_goat.moverHorizontal(anguloHorizontalRecuo);
-    // braco_goat.moverVertical(anguloVerticalRecuo);
-    braco_goat.moverVerticalEHorizontal(anguloVerticalRecuo, anguloHorizontalRecuo);
+    braco_goat.moverHorizontal(anguloHorizontalRecuo);
+    braco_goat.moverVertical(anguloVerticalRecuo);
+    
+    // braco_goat.moverVerticalEHorizontal(anguloVerticalRecuo, anguloHorizontalRecuo);
     
 
     // -------------------------------------------------------------
     // ETAPA 4: Giro da Base e Soltura do Disco
     // -------------------------------------------------------------
     braco_goat.moverBase(anguloPinoDestino);
-    // braco_goat.moverVertical(anguloVerticalSoltura);
-    // braco_goat.moverHorizontal(anguloHorizontalSoltura);
-    // braco_goat.moverHorizontal(anguloVerticalSoltura-10);
-    braco_goat.moverVerticalEHorizontal(anguloVerticalSoltura, anguloHorizontalSoltura);
+    braco_goat.moverVertical(anguloVerticalSoltura);
+    delay(500);
+    braco_goat.moverHorizontal(anguloHorizontalSoltura);
+    // braco_goat.moverVerticalEHorizontal(anguloVerticalSoltura, anguloHorizontalSoltura);
     braco_goat.moverGarra(GARRA_ABERTA); // aqui é pra soltar o disco do alto
+
+    
+
+    // braco_goat.moverVertical(POS_PADRAO_VERTICAL);
+    
+    // braco_goat.moverVertical(anguloVerticalSoltura);
+    
 
     discosNoPino[origem - 1]--;
     discosNoPino[destino - 1]++;

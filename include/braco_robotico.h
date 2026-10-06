@@ -17,8 +17,8 @@
 #define POS_PADRAO_HORIZONTAL 110
 #define POS_PADRAO_VERTICAL 127
 
-#define GARRA_FECHADA 97
-#define GARRA_ABERTA 60 //57
+#define GARRA_FECHADA 98//97
+#define GARRA_ABERTA 75//60 //57
 
 
 #include <Servo.h>
@@ -77,7 +77,7 @@ class BracoRobotico {
     angulo, mas buscando sempre manter uma suavidade a partir de um laço for.
     */
     int movimenta_suave(Servo &servo_alvo, int ANG_inicial, int ANG_final);
-    bool BracoRobotico::moverVerticalEHorizontal(int anguloVertical, int anguloHorizontal) ;
+    bool moverVerticalEHorizontal(int anguloVertical, int anguloHorizontal);
 
 
     bool moverBase(int angulo);
