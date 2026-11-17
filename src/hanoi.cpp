@@ -1,93 +1,50 @@
 #include "hanoi.h"
 
-static int discosNoPino[3] = {3, 0, 0};
+// ===========================================
 
+TorreHanoi::TorreHanoi(int posicao_torre_inicial, BracoRobotico &braco_usado)
+: discosNoPino{0}, braco_goat(braco_usado) {
+    discosNoPino[posicao_torre_inicial - 1] = 3;
+}
+TorreHanoi::~TorreHanoi() {} 
 
-int descobrir_anguloPino(int pino) {
-    switch (pino) {
-        case 1: return PINO_ESQUERDO;            
-        case 2: return PINO_CENTRAL;            
-        case 3: return PINO_DIREITO;       
-    }
+void TorreHanoi::medicaoAngulos(int origem, int destino) {
+    nivelOrigem = discosNoPino[origem - 1];
+    nivelDestino = discosNoPino[destino - 1] + 1;
+
+    anguloPinoOrigem = medir.anguloPino(origem);
+    anguloPinoDestino = medir.anguloPino(destino);
+
+    anguloVertical = medir.anguloServoVertical(origem, nivelOrigem);
+    anguloHorizontal= medir.anguloServoHorizontal(origem, nivelOrigem);
+
+    anguloVerticalRecuo = medir.anguloServoVertical(origem, 4);
+    anguloHorizontalRecuo = medir.anguloServoHorizontal(origem, 4);
+
+    anguloVerticalSoltura = medir.anguloServoVertical(destino, 4);
+    anguloHorizontalSoltura = medir.anguloServoHorizontal(destino, 4);
 }
 
-int descobrir_anguloServoVertical(int pino, int nivel) {
-    if (pino == 2) {
-        switch (nivel) {
-            case 1: return NIVEL_1_VERTICAL_CENTRAL;    
-            case 2: return NIVEL_2_VERTICAL_CENTRAL;
-            case 3: return NIVEL_3_VERTICAL_CENTRAL;
-            case 4: return NIVEL_4_VERTICAL_CENTRAL;
-            default: return NIVEL_4_VERTICAL_CENTRAL;
-        }
-    } else {
-        switch (nivel) {
-        case 1: return NIVEL_1_VERTICAL;    
-        case 2: return NIVEL_2_VERTICAL;
-        case 3: return NIVEL_3_VERTICAL;
-        case 4: return NIVEL_4_VERTICAL;
-        default: return NIVEL_4_VERTICAL_CENTRAL;
-        }
-    }
-}
+bool TorreHanoi::moverDisco(int origem, int destino) {
 
-int descobrir_anguloServoHorizontal(int pino, int nivel) {
-    if (pino == 2) {
-        switch (nivel) {
-            case 1: return NIVEL_1_HORIZONTAL_CENTRAL;    
-            case 2: return NIVEL_2_HORIZONTAL_CENTRAL;
-            case 3: return NIVEL_3_HORIZONTAL_CENTRAL;
-            case 4: return NIVEL_4_HORIZONTAL_CENTRAL;
-            default: return NIVEL_4_VERTICAL_CENTRAL;
-        }
-    } else {
-        switch (nivel) {
-        case 1: return NIVEL_1_HORIZONTAL;    
-        case 2: return NIVEL_2_HORIZONTAL;
-        case 3: return NIVEL_3_HORIZONTAL;
-        case 4: return NIVEL_4_HORIZONTAL;
-        default: return NIVEL_4_VERTICAL_CENTRAL;
-        }
-    }
-}
+    medicaoAngulos(origem, destino);
 
-bool moverDisco(int origem, int destino, BracoRobotico &braco_goat) {
-
-    int nivelOrigem = discosNoPino[origem - 1];
-    int nivelDestino = discosNoPino[destino - 1] + 1;
-
-    int anguloPinoOrigem = descobrir_anguloPino(origem);
-    int anguloPinoDestino = descobrir_anguloPino(destino);
-
-    int anguloVertical = descobrir_anguloServoVertical(origem, nivelOrigem);
-    int anguloHorizontal= descobrir_anguloServoHorizontal(origem, nivelOrigem); 
-
-    int anguloVerticalRecuo = descobrir_anguloServoVertical(origem, 4);
-    int anguloHorizontalRecuo = descobrir_anguloServoHorizontal(origem, 4);
-
-    int anguloVerticalSoltura = descobrir_anguloServoVertical(destino, 4);
-    int anguloHorizontalSoltura = descobrir_anguloServoHorizontal(destino, 4);
-
+    braco_goat.posicao_padrao();
 
     // -------------------------------------------------------------
     // ETAPA 1: Ir até o pino de Origem em posição elevada
     // -------------------------------------------------------------
-    braco_goat.posicao_padrao();
 
     braco_goat.moverGarra(GARRA_ABERTA);
-    // braco_goat.moverVertical(anguloVerticalRecuo);
-    // braco_goat.moverHorizontal(anguloHorizontalRecuo);
     braco_goat.moverBase(anguloPinoOrigem);
 
     // -------------------------------------------------------------
     // ETAPA 2: Descer para a altura do disco e Coletar
     // -------------------------------------------------------------
-    
-    // braco_goat.moverVerticalEHorizontal(anguloVertical, anguloHorizontal);
-    braco_goat.moverVertical(anguloVertical);
+
+    braco_goat.moverHasteVertical(anguloVertical);
     delay(500);
-    braco_goat.moverHorizontal(anguloHorizontal);
-    
+    braco_goat.moverHasteHorizontal(anguloHorizontal);
     braco_goat.moverGarra(GARRA_FECHADA);
 
     
@@ -95,49 +52,41 @@ bool moverDisco(int origem, int destino, BracoRobotico &braco_goat) {
     // -------------------------------------------------------------
     // ETAPA 3: Elevar o braço (Recuo / Altura Segura para transporte)
     // -------------------------------------------------------------
-    braco_goat.moverHorizontal(anguloHorizontalRecuo);
-    braco_goat.moverVertical(anguloVerticalRecuo);
     
-    // braco_goat.moverVerticalEHorizontal(anguloVerticalRecuo, anguloHorizontalRecuo);
-    
+    braco_goat.moverHasteHorizontal(anguloHorizontalRecuo);
+    braco_goat.moverHasteVertical(anguloVerticalRecuo);
 
     // -------------------------------------------------------------
     // ETAPA 4: Giro da Base e Soltura do Disco
     // -------------------------------------------------------------
+    
     braco_goat.moverBase(anguloPinoDestino);
-    braco_goat.moverVertical(anguloVerticalSoltura);
+    braco_goat.moverHasteVertical(anguloVerticalSoltura);
     delay(500);
-    braco_goat.moverHorizontal(anguloHorizontalSoltura);
-    // braco_goat.moverVerticalEHorizontal(anguloVerticalSoltura, anguloHorizontalSoltura);
-    braco_goat.moverGarra(GARRA_ABERTA); // aqui é pra soltar o disco do alto
-
+    braco_goat.moverHasteHorizontal(anguloHorizontalSoltura);
+    braco_goat.moverGarra(GARRA_ABERTA);
     
-
-    // braco_goat.moverVertical(POS_PADRAO_VERTICAL);
-    
-    // braco_goat.moverVertical(anguloVerticalSoltura);
-    
-
     discosNoPino[origem - 1]--;
     discosNoPino[destino - 1]++;
 
     return true;
 }
 
-bool resolverHanoi(int n, int origem, int destino, int aux, BracoRobotico &braco_goat) {
+
+
+// ===========================================
+
+bool resolverHanoi(int n, int origem, int destino, int aux, TorreHanoi &torre) {
     if (n == 1) {
         // Caso Base: Mover apenas 1 disco diretamente
-        moverDisco(origem, destino, braco_goat);
+        torre.moverDisco(origem, destino);
         return true;
     }
-
     // 1. Mover n-1 discos da Origem para o Auxiliar
-    resolverHanoi(n - 1, origem, aux, destino, braco_goat);
-
+    resolverHanoi(n - 1, origem, aux, destino, torre);
     // 2. Mover o disco restante da Origem para o Destino
-    moverDisco(origem, destino, braco_goat);
+    torre.moverDisco(origem, destino);
     // 3. Mover n-1 discos do Auxiliar para o Destino
-    resolverHanoi(n - 1, aux, destino, origem, braco_goat);
-
+    resolverHanoi(n - 1, aux, destino, origem, torre);
     return true;
 }

@@ -1,32 +1,12 @@
 # ifndef BRACOROBOTICO_H
 # define BRACOROBOTICO_H
 
-#define ANGULO_INICIALIZACAO_BASE 0
-#define ANGULO_INICIALIZACAO_GARRA 90
-#define ANGULO_INICIALIZACAO_HORIZONTAL 120
-#define ANGULO_INICIALIZACAO_VERTICAL 90
-
-#define POS_CALIBRACAO_BASE 180 
-#define POS_CALIBRACAO_GARRA 20
-#define POS_CALIBRACAO_HORIZONTAL 160
-#define POS_CALIBRACAO_VERTICAL 180
-
-
-#define POS_PADRAO_BASE 96
-#define POS_PADRAO_GARRA 60
-#define POS_PADRAO_HORIZONTAL 110
-#define POS_PADRAO_VERTICAL 127
-
-#define GARRA_FECHADA 98//97
-#define GARRA_ABERTA 75//60 //57
-
-
 #include <Servo.h>
-#include <Arduino.h>
+#include "ferramentas.h"
 
 
 class BracoRobotico {
-  private: 
+  protected: 
     int POS_base,
         POS_garra,
         POS_vertical,
@@ -36,62 +16,23 @@ class BracoRobotico {
           servo_garra,
           servo_vertical,
           servo_horizontal;
+
+    FerramentasMovimentacao movimentar;
+    FerramentasExibicao exibir;
+    
   public:
-    BracoRobotico(int PIN_base, int PIN_garra, int PIN_vertical, int PIN_horizontal) {
-      
-      servo_base.attach(PIN_base);
-      POS_base = POS_PADRAO_BASE;
-      servo_base.write(POS_base);
-      
-      servo_garra.attach(PIN_garra);
-      POS_garra = POS_PADRAO_GARRA;
-      servo_garra.write(POS_garra);
-
-      servo_vertical.attach(PIN_vertical);
-      POS_vertical = POS_PADRAO_VERTICAL;
-      servo_vertical.write(POS_vertical);
-      
-
-      servo_horizontal.attach(PIN_horizontal);
-      POS_horizontal = POS_PADRAO_HORIZONTAL;
-      servo_horizontal.write(POS_horizontal);
-    }
-
-    /**
-    inicializar é a função de calibração. Ela busca fixar os servos inicialmente nos "extremos" (que são 
-    subjetivos, dependem do servo). Ela serve de ponto de partida. Talvez futuramente ela seja dispensável,
-    porém ela se válida... 
-    */
-
+    BracoRobotico(int PIN_base, int PIN_garra, int PIN_vertical, int PIN_horizontal);
 
     bool inicializar();
-
-    /**
-    posicao_padrao também é uma função de operação, mas ela põe os servos na posição padrão deles. Isso depende
-    inteiramente de cada servo e das suas limitações.
-    */
     bool posicao_padrao();
    
-    /**
-    movimenta_suave é uma função auxiliar que serve para realziar de fato a alteração dos angulos. Ela muda o 
-    angulo, mas buscando sempre manter uma suavidade a partir de um laço for.
-    */
-    int movimenta_suave(Servo &servo_alvo, int ANG_inicial, int ANG_final);
-    bool moverVerticalEHorizontal(int anguloVertical, int anguloHorizontal);
-
-
+  
     bool moverBase(int angulo);
     bool moverGarra(int angulo);
-    bool moverHorizontal(int angulo);
-    bool moverVertical(int angulo);
+    bool moverHasteHorizontal(int angulo);
+    bool moverHasteVertical(int angulo);
 
-    /*
-    Funções getters, apenas retornam o angulo atual do servo. Apenas isso. Não permitem MUDAR o angulo!
-    */
-    int getPOS_base() const;
-    int getPOS_garra() const;
-    int getPOS_vertical() const;
-    int getPOS_horizontal() const;
+     ~BracoRobotico();
 
 };
 

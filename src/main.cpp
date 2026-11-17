@@ -1,16 +1,14 @@
+#include <Arduino.h>
 #include "braco_robotico.h"
-#include "depuracao.h"
+#include "ferramentas.h"
 #include "hanoi.h"
+#include "defines.h"
 
-#define PIN_GARRA 3
-#define PIN_HORIZONTAL 5
-#define PIN_VERTICAL 6
-#define PIN_BASE 9
 
 void setup() {
 
   BracoRobotico braco_goat(PIN_BASE, PIN_GARRA, PIN_VERTICAL, PIN_HORIZONTAL);
-
+  TorreHanoi torre(1, braco_goat);
   bool operacao;
   
   Serial.begin(9600);
@@ -19,32 +17,11 @@ void setup() {
   
   delay(1000);
 
-  // braco_goat.moverBase(PINO_ESQUERDO);
-  // braco_goat.moverHorizontal(NIVEL_3_HORIZONTAL);
-  // braco_goat.moverVertical(NIVEL_3_VERTICAL);
-  // braco_goat.moverGarra(GARRA_ABERTA);
-
-  // exibirStatus(braco_goat);
-  
-  // delay(1000);
-  // operacao = braco_goat.posicao_padrao();
-
-  // verificarOperacao("Posicao Padrao", operacao);
-  // exibirStatus(braco_goat);
-
-  // braco_goat.moverBase(PINO_ESQUERDO);
-  // braco_goat.moverHorizontal(NIVEL_3_HORIZONTAL);
-  // braco_goat.moverVertical(NIVEL_3_VERTICAL);
-  // braco_goat.moverGarra(GARRA_FECHADA);
-
-  operacao = resolverHanoi(3, 1, 3, 2, braco_goat);
+  operacao = braco_goat.posicao_padrao();
+  verificarOperacao("Posicao Padrao", operacao);
+  operacao = resolverHanoi(3, 1, 3, 2, torre);
   verificarOperacao("Resolver Hanoi", operacao);
-
-  braco_goat.posicao_padrao();
-  
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
+void loop() {}
 
