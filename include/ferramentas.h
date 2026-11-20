@@ -5,6 +5,7 @@
 #include "braco_robotico.h"
 #include "defines.h"
 
+void verificarOperacao(const char *nome_operacao, bool sucesso);
 
 class FerramentasExibicao {
     public:

@@ -29,6 +29,8 @@ class TorreHanoi {
 
         bool resolverHanoi(int n, int origem, int destino, int aux);
 
+        void exibirStatus();
+
         ~TorreHanoi() {};
 
 };

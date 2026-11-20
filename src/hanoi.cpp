@@ -47,8 +47,6 @@ bool TorreHanoi::moverDisco(int origem, int destino) {
     braco_goat.moverHasteHorizontal(anguloHorizontal);
     braco_goat.moverGarra(GARRA_FECHADA);
 
-    
-
     // -------------------------------------------------------------
     // ETAPA 3: Elevar o braço (Recuo / Altura Segura para transporte)
     // -------------------------------------------------------------
@@ -73,6 +71,15 @@ bool TorreHanoi::moverDisco(int origem, int destino) {
 }
 
 
+void TorreHanoi::exibirStatus() {
+    Serial.println("===============================");
+    Serial.print("Discos no Pino 1: ");
+    Serial.println(discosNoPino[0]);
+    Serial.print("Discos no Pino 2: ");
+    Serial.println(discosNoPino[1]);
+    Serial.print("Discos no Pino 3: ");
+    Serial.println(discosNoPino[2]);
+}
 
 // ===========================================
 
@@ -88,5 +95,8 @@ bool resolverHanoi(int n, int origem, int destino, int aux, TorreHanoi &torre) {
     torre.moverDisco(origem, destino);
     // 3. Mover n-1 discos do Auxiliar para o Destino
     resolverHanoi(n - 1, aux, destino, origem, torre);
+    
+    torre.exibirStatus();
+
     return true;
 }

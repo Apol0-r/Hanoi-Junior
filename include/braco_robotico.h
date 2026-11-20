@@ -32,7 +32,9 @@ class BracoRobotico {
     bool moverHasteHorizontal(int angulo);
     bool moverHasteVertical(int angulo);
 
-     ~BracoRobotico();
+    void exibirStatus();
+
+    ~BracoRobotico();
 
 };
 

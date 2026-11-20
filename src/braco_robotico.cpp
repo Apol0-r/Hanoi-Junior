@@ -59,6 +59,24 @@ bool BracoRobotico::inicializar() {
     return true;
 }
 
+void BracoRobotico::exibirStatus() {
+    Serial.println("===============================");
+
+    Serial.print("Base: ");
+    Serial.println(POS_base);
+
+    Serial.print("Garra: ");
+    Serial.println(POS_garra);
+
+    Serial.print("Vertical: ");
+    Serial.println(POS_vertical);
+
+    Serial.print("Horizontal: ");
+    Serial.println(POS_horizontal);
+
+    Serial.println("===============================");
+}
+
 
 
 

@@ -19,7 +19,10 @@ void setup() {
 
   operacao = braco_goat.posicao_padrao();
   verificarOperacao("Posicao Padrao", operacao);
+
+  torre.exibirStatus();
   operacao = resolverHanoi(3, 1, 3, 2, torre);
+
   verificarOperacao("Resolver Hanoi", operacao);
 }
 
