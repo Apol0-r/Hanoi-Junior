@@ -76,7 +76,15 @@ Status: SUCESSO
 * [ ] Implementação de novas técnicas de calibração dinâmica de distâncias e ângulos.
 * [ ] Expansão para sensores de feedback na garra.
 
-## 📸 Imagens
+
+
+## 📸 Imagens e Vídeos
+
 ![Foto do MeArm na bancada](midia/mearm1.webp)
 ![Foto do MeArm na bancada](midia/mearm2.webp)
 ![Foto do MeArm na bancada](midia/mearm3.webp)
+
+### 🎬 Vídeos
+
+- [Assistir Vídeo 1 (Testes físicos / calibração)](https://youtu.be/dmu5MLno9_s)
+- [Assistir Vídeo 2 (Execução do algoritmo / bancada)](https://youtube.com/shorts/l3MK1Re27vc?feature=share)
