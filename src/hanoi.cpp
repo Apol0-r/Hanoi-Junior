@@ -63,6 +63,14 @@ bool TorreHanoi::moverDisco(int origem, int destino) {
     delay(500);
     braco_goat.moverHasteHorizontal(anguloHorizontalSoltura);
     braco_goat.moverGarra(GARRA_ABERTA);
+
+    Serial.println("===============================");
+    Serial.print("Disco movido do pino ");
+    Serial.print(origem);
+    Serial.print(" para o pino ");
+    Serial.println(destino);
+
+    exibirStatus();
     
     discosNoPino[origem - 1]--;
     discosNoPino[destino - 1]++;
@@ -95,8 +103,6 @@ bool resolverHanoi(int n, int origem, int destino, int aux, TorreHanoi &torre) {
     torre.moverDisco(origem, destino);
     // 3. Mover n-1 discos do Auxiliar para o Destino
     resolverHanoi(n - 1, aux, destino, origem, torre);
-    
-    torre.exibirStatus();
 
     return true;
 }

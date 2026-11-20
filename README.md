@@ -75,3 +75,8 @@ Status: SUCESSO
 * [ ] Desenvolvimento de PCB dedicada para distribuição de potência e estabilização elétrica dos servos.
 * [ ] Implementação de novas técnicas de calibração dinâmica de distâncias e ângulos.
 * [ ] Expansão para sensores de feedback na garra.
+
+## 📸 Imagens
+![Foto do MeArm na bancada](midia/mearm1.webp)
+![Foto do MeArm na bancada](midia/mearm2.webp)
+![Foto do MeArm na bancada](midia/mearm3.webp)
