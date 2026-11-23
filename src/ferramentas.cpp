@@ -5,9 +5,10 @@
 
 int FerramentasMedicao::anguloPino(int pino) {
     switch (pino) {
-        case 1: return PINO_ESQUERDO;            
-        case 2: return PINO_CENTRAL;            
-        case 3: return PINO_DIREITO;       
+        case 1: return PINO_ESQUERDO;
+        case 2: return PINO_CENTRAL;
+        case 3: return PINO_DIREITO;
+        default: return PINO_CENTRAL;
     }
 }
 
